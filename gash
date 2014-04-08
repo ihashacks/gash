@@ -524,7 +524,7 @@ if ($readinputforhist) {
                     $gamedata{'char_hp'} += 10;
                     &remove_item_from_char($use_what, \%gamedata);
                 } elsif ($use_what eq "spaceprotectionpotion") {
-
+					$message_output .= sprintf ("spaceprotectionpotion not supported yet\n");
                 }
             } else {
                 $message_output .= sprintf ("You don't have a '%s'\n", $use_what);
