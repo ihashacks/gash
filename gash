@@ -163,7 +163,7 @@ my $message_output = "";
 my $game_engine_on = 1;
 
 # list of commands to never fail on like frickin' ssh and tail
-my @ignored_commands = ('tail','ssh');
+my @default_ignored_commands = ();
 
 ###############
 # CONFIG FILE #
@@ -260,6 +260,12 @@ if (&is_alphanumlist($configdata{'messages_color_attr'})) {
 } else {
     @messages_color_attr = @default_messages_color_attr;
 } 
+
+if (&is_alphanumlist($configdata{'ignored_commands'})) {
+	@ignored_commands = split(/,/, $configdata{'ignored_commands'});
+} else {
+	@ignored_commands = @default_ignored_commands;
+}
 
 (&is_alphanumeric($configdata{'character_color_fg'})) ? ($character_color_fg = $configdata{'character_color_fg'}) : ($character_color_fg = $default_character_color_fg);
 (&is_alphanumeric($configdata{'character_color_bg'})) ? ($character_color_bg = $configdata{'character_color_bg'}) : ($character_color_bg = $default_character_color_bg);
