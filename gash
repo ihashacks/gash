@@ -162,6 +162,9 @@ my $message_output = "";
 
 my $game_engine_on = 1;
 
+# list of commands to never fail on like frickin' ssh and tail
+my @ignored_commands = ('tail','ssh');
+
 ###############
 # CONFIG FILE #
 ###############
@@ -617,9 +620,10 @@ if ($game_engine_on) { # NORMAL LOGIC
     }
 
     print "DEBUG: last return: $lastreturnvalue newcommandhasbeenrun: $newcommandhasbeenrun\n" if ($verbose >= 2);
+	my @basename = split(' ', $last_shell_command_run);
     if ($lastreturnvalue == 0 && $newcommandhasbeenrun && ($command_mode == 0) && ($last_shell_command_run !~ /^\s*gash\b/)) {
         $gamedata{'char_exp'}++;
-    } elsif ($lastreturnvalue != 0 && $newcommandhasbeenrun) {
+    } elsif ($lastreturnvalue != 0 && $newcommandhasbeenrun && (!grep(/$basename[0]/, @ignored_commands))) {
         $gamedata{'char_hp'}--;
         $message_output .= "You made a mistake and take 1 point of damage.\n";
     }
