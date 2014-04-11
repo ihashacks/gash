@@ -124,6 +124,10 @@ Config file options
     * _titlebar_ - Draws the HUD inside your terminal emulator's window titlebar.
                This can be a nice solution for getting it out of the way, however
 
+	* _notifysend_ - Uses the notify-send command to generate a notification in X Windows.
+				Highly recommended to set the _hud_every_n_times_ option >= 5 to not get
+				bombarded with notifications.
+
 * __hud_color_fg__ (default: white)- The foreground color of your HUD. See ANSI colors and attributes section.
 * __hud_color_bg__ (default: normal) - The background color of your HUD. See ANSI colors and attributes section.
 * __hud_color_attr__  A comma seperated list of ANSI attributes used on the HUD text. See ANSI colors and attributes section.
