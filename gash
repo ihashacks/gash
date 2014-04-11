@@ -737,7 +737,15 @@ if ($game_engine_on) { # NORMAL LOGIC
             $gamedata{'char_gold'};
                                                                 
 
-        }
+        } elsif ($hud_type eq "notifysend") {
+			$notify_output = "GASH\n";
+            $notify_output .= " LVL:   " . $gamedata{'char_level'} . " \n";
+            $notify_output .= " HP:    " . $gamedata{'char_hp'} . " \n";
+            $notify_output .= " Exp:   " . $gamedata{'char_exp'} . " \n";
+            $notify_output .= " Gold:  " . $gamedata{'char_gold'} . " \n";
+			system("notify-send '$notify_output'");
+		}
+
     }
 
 
