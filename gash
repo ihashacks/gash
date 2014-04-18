@@ -443,9 +443,17 @@ if ($readinputforhist) {
                 $message_output .= "You see nothing here.\n";   
             }
         } elsif ($game_command =~ m/^(inventory|inv|i)$/) {
+			my $inventory_output ="";
+			$inventory_output .= "Your Inventory\n";
             foreach my $item (@{$gamedata{'char_inventory'}}) {
-                printf ("You have a '%s'\n", $item);
+				$inventory_output .= "  $item\n";
+				#$inventory_output .= "  $item\t" . $items_for_sale{$item}{'description'} . "\n";
             }
+
+			$inventory_output = make_box_around_text('GASH', 'left', $character_boxchar_ref, $inventory_output);
+
+            print $char_themecode . $inventory_output . $ansi_reset;
+
         } elsif ($game_command =~ m/^(character|char|c)$/) {
             
             my $char_output = "";
